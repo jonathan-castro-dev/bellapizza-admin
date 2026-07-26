@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bella-brand: #b90027;
+  --color-bella-brand-active: #e31837;
+  --color-bella-border: #e6bdbb;
+  --color-bella-canvas: #f8f9fa;
+  --color-bella-muted: #f3f4f5;
+  --color-bella-ink: #191c1d;
+  --color-bella-subtle: #5d3f3e;
+  --color-bella-placeholder: #6b7280;
+  --color-bella-pill: #e7e8e9;
+  --color-bella-preparing: #603100;
+  --color-bella-preparing-accent: #fd8b00;
+  --color-bella-nav-on: #fffaf9;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bella-canvas);
+  color: var(--color-bella-ink);
+}
