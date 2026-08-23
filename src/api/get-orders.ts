@@ -1,6 +1,6 @@
 import { api } from '../services/api.ts'
 
-export type OrderStatus = 'preparing' | 'ready' | 'delivered' | 'canceled'
+export type OrderStatus = 'preparing' | 'ready'
 
 export interface OrderItem {
   quantity: number
@@ -18,15 +18,16 @@ export interface Order {
   status: OrderStatus
   created_at: string
   clientName: string
-  address: OrderAddress
+  address: OrderAddress | null
   items: OrderItem[]
 }
 
 // The endpoint may answer with a bare array or wrap it in an `orders` envelope.
-type GetOrdersResponse = Order[] | { orders: Order[] }
+type GetOrdersResponse = Order[] | { formattedOrders: Order[] }
 
 export async function getOrders() {
   const response = await api.get<GetOrdersResponse>('/orders')
 
-  return Array.isArray(response.data) ? response.data : response.data.orders
+  return Array.isArray(response.data)
+    ? response.data : response.data.formattedOrders
 }

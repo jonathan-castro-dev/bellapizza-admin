@@ -8,16 +8,12 @@ interface OrderTableRowProps {
 export function OrderTableRow({ order }: OrderTableRowProps) {
   return (
     <tr>
-      <td
-        className="whitespace-nowrap px-6 py-5 font-bold text-bella-brand"
-        title={order.id}
-      >
-        #{order.id.slice(0, 8)}
-      </td>
       <td className="px-6 py-5">
         <p className="font-bold text-bella-ink">{order.clientName}</p>
         <p className="mt-0.5 text-xs font-medium text-bella-subtle">
-          {order.address.street}, {order.address.number}
+          {order.address?.street && order.address?.number
+            ? `${order.address.street}, ${order.address.number}`
+            : 'Endereço não informado'}
         </p>
       </td>
       <td className="px-6 py-5">
@@ -32,11 +28,11 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
           ))}
         </div>
       </td>
-      <td className="px-6 py-5">
+      <td className="px-6 py-5 whitespace-nowrap">
         <OrderStatusBadge status={order.status} />
       </td>
       <td className="px-6 py-5 text-right">
-        {order.status === 'ready' ? (
+        {order.status === 'preparing' ? (
           <button
             type="button"
             className="rounded-lg bg-bella-brand px-4 py-2 text-sm font-bold text-white"

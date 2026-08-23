@@ -30,7 +30,6 @@ export function OrdersTable({ orders, isLoading, isError, onRetry }: OrdersTable
         <table className="w-full border-collapse text-left text-sm">
           <thead>
             <tr className="bg-bella-muted text-xs font-semibold uppercase tracking-wide text-bella-subtle">
-              <th className="px-6 py-4 font-medium">ID</th>
               <th className="px-6 py-4 font-medium">Cliente</th>
               <th className="px-6 py-4 font-medium">Itens</th>
               <th className="px-6 py-4 font-medium">Status</th>
