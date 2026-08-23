@@ -96,7 +96,7 @@ export function ActiveOrders() {
             <input
               type="search"
               readOnly
-              placeholder="Buscar ID ou Cliente..."
+              placeholder="Buscar cliente..."
               className="w-full rounded-full border border-bella-border bg-bella-muted py-2.5 pl-11 pr-4 text-base text-bella-ink placeholder:text-bella-placeholder"
             />
           </div>
@@ -112,7 +112,7 @@ export function ActiveOrders() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="flex items-center justify-between rounded-xl border border-bella-border bg-white p-6 shadow-sm">
               <div>
-                <p className="text-sm font-semibold text-bella-subtle">Pedidos Hoje</p>
+                <p className="text-sm font-semibold text-bella-subtle">Pedidos hoje</p>
                 <p className="mt-1 text-3xl font-bold text-bella-ink">124</p>
               </div>
               <div className="flex size-12 items-center justify-center rounded-full bg-bella-brand/10 text-bella-brand">
@@ -121,7 +121,7 @@ export function ActiveOrders() {
             </div>
             <div className="flex items-center justify-between rounded-xl border border-bella-border bg-white p-6 shadow-sm">
               <div>
-                <p className="text-sm font-semibold text-bella-subtle">Total do Mês</p>
+                <p className="text-sm font-semibold text-bella-subtle">Total do mês</p>
                 <p className="mt-1 text-3xl font-bold text-bella-ink">R$ 42.850</p>
               </div>
               <div className="flex size-12 items-center justify-center rounded-full bg-bella-preparing-accent/20 text-bella-preparing">
@@ -132,7 +132,7 @@ export function ActiveOrders() {
 
           <section className="mt-8 overflow-hidden rounded-xl border border-bella-border bg-white shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-bella-border px-6 py-5">
-              <h1 className="text-2xl font-bold text-bella-ink">Pedidos Ativos</h1>
+              <h1 className="text-2xl font-bold text-bella-ink">Pedidos ativos</h1>
               <button
                 type="button"
                 className="inline-flex items-center gap-2 rounded-lg border border-bella-border bg-bella-canvas px-4 py-2 text-sm font-semibold text-bella-ink"
@@ -147,7 +147,6 @@ export function ActiveOrders() {
               <table className="w-full border-collapse text-left text-sm">
                 <thead>
                   <tr className="bg-bella-muted text-xs font-semibold uppercase tracking-wide text-bella-subtle">
-                    <th className="px-6 py-4 font-medium">ID</th>
                     <th className="px-6 py-4 font-medium">Cliente</th>
                     <th className="px-6 py-4 font-medium">Itens</th>
                     <th className="px-6 py-4 font-medium">Status</th>
@@ -159,9 +158,6 @@ export function ActiveOrders() {
                 <tbody className="divide-y divide-bella-border">
                   {orders.map((order) => (
                     <tr key={order.id}>
-                      <td className="whitespace-nowrap px-6 py-5 font-bold text-bella-brand">
-                        {order.id}
-                      </td>
                       <td className="px-6 py-5">
                         <p className="font-bold text-bella-ink">{order.name}</p>
                         <p className="mt-0.5 text-xs font-medium text-bella-subtle">{order.address}</p>
