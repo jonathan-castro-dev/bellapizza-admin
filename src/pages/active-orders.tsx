@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router'
 
 import { getOrders } from '../api/get-orders.ts'
+import { getOrdersToday } from '../api/get-orders-today.ts'
 import { Header } from '../components/header.tsx'
 import { OrdersTable } from '../components/orders-table.tsx'
 import { Sidebar } from '../components/sidebar.tsx'
@@ -24,6 +25,11 @@ export function ActiveOrders() {
     queryFn: () => getOrders({ clientName: debouncedClientName, status }),
   })
 
+  const { data: ordersToday } = useQuery({
+    queryKey: ['orders-today'],
+    queryFn: getOrdersToday,
+  })
+
   return (
     <div className="flex min-h-full bg-bella-canvas">
       <Sidebar />
@@ -32,7 +38,7 @@ export function ActiveOrders() {
         <Header />
 
         <main className="mx-auto w-full max-w-7xl flex-1 px-8 py-8">
-          <SummaryCards />
+          <SummaryCards ordersToday={ordersToday ?? 0} />
 
           <div className="mt-8">
             <OrdersTable

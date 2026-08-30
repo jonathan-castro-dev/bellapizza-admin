@@ -1,12 +1,16 @@
 import { Banknote, Utensils } from 'lucide-react'
 
-export function SummaryCards() {
+interface SummaryCardsProps {
+  ordersToday: number
+}
+
+export function SummaryCards({ ordersToday }: SummaryCardsProps) {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
       <div className="flex items-center justify-between rounded-xl border border-bella-border bg-white p-6 shadow-sm">
         <div>
           <p className="text-sm font-semibold text-bella-subtle">Pedidos Hoje</p>
-          <p className="mt-1 text-3xl font-bold text-bella-ink">124</p>
+          <p className="mt-1 text-3xl font-bold text-bella-ink">{ordersToday}</p>
         </div>
         <div className="flex size-12 items-center justify-center rounded-full bg-bella-brand/10 text-bella-brand">
           <Utensils className="size-5 shrink-0" />
