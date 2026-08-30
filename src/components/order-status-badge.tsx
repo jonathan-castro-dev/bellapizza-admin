@@ -21,16 +21,6 @@ const statusStyles: Record<string, StatusStyle> = {
     badge: 'bg-green-100 text-green-800',
     dot: 'bg-green-500',
   },
-  delivered: {
-    label: 'Entregue',
-    badge: 'bg-bella-pill text-bella-ink',
-    dot: 'bg-bella-subtle',
-  },
-  canceled: {
-    label: 'Cancelado',
-    badge: 'bg-bella-brand/10 text-bella-brand',
-    dot: 'bg-bella-brand',
-  },
 }
 
 export function OrderStatusBadge({ status }: OrderStatusBadgeProps) {
