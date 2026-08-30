@@ -82,7 +82,7 @@ export function OrdersTable({ orders, isLoading, isError, onRetry }: OrdersTable
             aria-haspopup="listbox"
             aria-expanded={isStatusMenuOpen}
             onClick={() => setIsStatusMenuOpen((open) => !open)}
-            className="inline-flex items-center gap-2 rounded-lg border border-bella-border bg-bella-canvas px-4 py-2 text-sm font-semibold text-bella-ink"
+            className="inline-flex items-center gap-2 rounded-lg border border-bella-border bg-bella-canvas px-4 py-2 text-sm font-semibold text-bella-ink cursor-pointer"
           >
             <ListFilter className="size-4 text-bella-subtle" />
             {selectedStatusLabel}

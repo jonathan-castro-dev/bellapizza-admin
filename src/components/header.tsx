@@ -1,4 +1,4 @@
-import { type FormEvent } from 'react'
+import { type SubmitEvent } from 'react'
 import { Bell, CircleUserRound, Search } from 'lucide-react'
 import { useSearchParams } from 'react-router'
 
@@ -23,7 +23,7 @@ export function Header() {
     )
   }
 
-  function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSearchSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     const value = String(formData.get('clientName') ?? '')
