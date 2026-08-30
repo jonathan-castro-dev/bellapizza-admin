@@ -22,11 +22,21 @@ export interface Order {
   items: OrderItem[]
 }
 
+export interface GetOrdersQuery {
+  clientName?: string | null
+  status?: string | null
+}
+
 // The endpoint may answer with a bare array or wrap it in an `orders` envelope.
 type GetOrdersResponse = Order[] | { formattedOrders: Order[] }
 
-export async function getOrders() {
-  const response = await api.get<GetOrdersResponse>('/orders')
+export async function getOrders({ clientName, status }: GetOrdersQuery = {}) {
+  const response = await api.get<GetOrdersResponse>('/orders', {
+    params: {
+      clientName: clientName || undefined,
+      status: status || undefined,
+    },
+  })
 
   return Array.isArray(response.data)
     ? response.data : response.data.formattedOrders

@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { useSearchParams } from 'react-router'
 
 import { getOrders } from '../api/get-orders.ts'
 import { Header } from '../components/header.tsx'
@@ -7,14 +8,18 @@ import { Sidebar } from '../components/sidebar.tsx'
 import { SummaryCards } from '../components/summary-cards.tsx'
 
 export function ActiveOrders() {
+  const [searchParams] = useSearchParams()
+  const clientName = searchParams.get('clientName')
+  const status = searchParams.get('status')
+
   const {
     data: orders,
     isPending,
     isError,
     refetch,
   } = useQuery({
-    queryKey: ['orders'],
-    queryFn: getOrders,
+    queryKey: ['orders', clientName, status],
+    queryFn: () => getOrders({ clientName, status }),
   })
 
   return (
