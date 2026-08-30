@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router'
 
 import { getOrders } from '../api/get-orders.ts'
+import { getOrdersRevenue } from '../api/get-orders-revenue.ts'
 import { getOrdersToday } from '../api/get-orders-today.ts'
 import { Header } from '../components/header.tsx'
 import { OrdersTable } from '../components/orders-table.tsx'
@@ -30,6 +31,11 @@ export function ActiveOrders() {
     queryFn: getOrdersToday,
   })
 
+  const { data: ordersRevenue } = useQuery({
+    queryKey: ['orders-revenue'],
+    queryFn: getOrdersRevenue,
+  })
+
   return (
     <div className="flex min-h-full bg-bella-canvas">
       <Sidebar />
@@ -38,7 +44,10 @@ export function ActiveOrders() {
         <Header />
 
         <main className="mx-auto w-full max-w-7xl flex-1 px-8 py-8">
-          <SummaryCards ordersToday={ordersToday ?? 0} />
+          <SummaryCards
+            ordersToday={ordersToday ?? 0}
+            ordersRevenue={ordersRevenue ?? 0}
+          />
 
           <div className="mt-8">
             <OrdersTable
