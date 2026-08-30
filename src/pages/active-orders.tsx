@@ -6,7 +6,7 @@ import { Header } from '../components/header.tsx'
 import { OrdersTable } from '../components/orders-table.tsx'
 import { Sidebar } from '../components/sidebar.tsx'
 import { SummaryCards } from '../components/summary-cards.tsx'
-import { useDebounce } from '../lib/use-debounce.ts'
+import { useDebounce } from '../hooks/use-debounce.ts'
 
 export function ActiveOrders() {
   const [searchParams] = useSearchParams()
