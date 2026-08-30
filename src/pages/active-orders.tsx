@@ -6,11 +6,13 @@ import { Header } from '../components/header.tsx'
 import { OrdersTable } from '../components/orders-table.tsx'
 import { Sidebar } from '../components/sidebar.tsx'
 import { SummaryCards } from '../components/summary-cards.tsx'
+import { useDebounce } from '../lib/use-debounce.ts'
 
 export function ActiveOrders() {
   const [searchParams] = useSearchParams()
   const clientName = searchParams.get('clientName')
   const status = searchParams.get('status')
+  const debouncedClientName = useDebounce(clientName, 300)
 
   const {
     data: orders,
@@ -18,8 +20,8 @@ export function ActiveOrders() {
     isError,
     refetch,
   } = useQuery({
-    queryKey: ['orders', clientName, status],
-    queryFn: () => getOrders({ clientName, status }),
+    queryKey: ['orders', debouncedClientName, status],
+    queryFn: () => getOrders({ clientName: debouncedClientName, status }),
   })
 
   return (
