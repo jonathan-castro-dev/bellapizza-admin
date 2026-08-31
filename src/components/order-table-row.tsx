@@ -11,7 +11,7 @@ interface OrderTableRowProps {
 export function OrderTableRow({ order }: OrderTableRowProps) {
   const queryClient = useQueryClient()
 
-  const { mutateAsync: updateOrderStatusFn, isPending: isUpdatingOrderStatus } =
+  const { mutate: updateOrderStatusFn, isPending: isUpdatingOrderStatus } =
     useMutation({
       mutationFn: updateOrderStatus,
       async onSuccess() {
