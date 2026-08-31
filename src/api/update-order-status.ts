@@ -5,7 +5,5 @@ interface UpdateOrderStatusParams {
 }
 
 export async function updateOrderStatus({ orderId }: UpdateOrderStatusParams) {
-  await api.patch(`/orders/${orderId}/status`, {
-    status: 'ready',
-  })
+  await api.patch(`/orders/${orderId}/status`)
 }

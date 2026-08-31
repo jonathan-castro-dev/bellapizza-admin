@@ -50,7 +50,7 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
             type="button"
             disabled={isUpdatingOrderStatus}
             onClick={() => updateOrderStatusFn({ orderId: order.id })}
-            className="rounded-lg bg-bella-brand px-4 py-2 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-lg bg-bella-brand px-4 py-2 text-sm font-bold text-white cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
           >
             Finalizar pedido
           </button>

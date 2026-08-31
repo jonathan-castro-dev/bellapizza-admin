@@ -39,7 +39,7 @@ export function Header() {
           name="clientName"
           value={clientName}
           onChange={(event) => updateClientName(event.target.value)}
-          placeholder="Buscar ID ou Cliente..."
+          placeholder="Buscar cliente..."
           className="w-full rounded-full border border-bella-border bg-bella-muted py-2.5 pl-11 pr-4 text-base text-bella-ink placeholder:text-bella-placeholder"
         />
       </form>
