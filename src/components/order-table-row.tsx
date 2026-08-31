@@ -1,4 +1,7 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+
 import type { Order } from '../api/get-orders.ts'
+import { updateOrderStatus } from '../api/update-order-status.ts'
 import { OrderStatusBadge } from './order-status-badge.tsx'
 
 interface OrderTableRowProps {
@@ -6,6 +9,16 @@ interface OrderTableRowProps {
 }
 
 export function OrderTableRow({ order }: OrderTableRowProps) {
+  const queryClient = useQueryClient()
+
+  const { mutateAsync: updateOrderStatusFn, isPending: isUpdatingOrderStatus } =
+    useMutation({
+      mutationFn: updateOrderStatus,
+      async onSuccess() {
+        await queryClient.invalidateQueries({ queryKey: ['orders'] })
+      },
+    })
+
   return (
     <tr>
       <td className="px-6 py-5">
@@ -35,7 +48,9 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
         {order.status === 'preparing' ? (
           <button
             type="button"
-            className="rounded-lg bg-bella-brand px-4 py-2 text-sm font-bold text-white"
+            disabled={isUpdatingOrderStatus}
+            onClick={() => updateOrderStatusFn({ orderId: order.id })}
+            className="rounded-lg bg-bella-brand px-4 py-2 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             Finalizar pedido
           </button>
