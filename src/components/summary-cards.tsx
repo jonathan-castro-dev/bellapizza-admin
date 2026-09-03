@@ -1,19 +1,54 @@
 import { Banknote, Utensils } from 'lucide-react'
 
 import { formatCurrency } from '../lib/format-currency.ts'
+import { SummaryCardValueSkeleton } from './summary-card-value-skeleton.tsx'
 
 interface SummaryCardsProps {
   ordersToday: number
   ordersRevenue: number
+  isOrdersTodayLoading: boolean
+  isOrdersTodayError: boolean
+  isOrdersRevenueLoading: boolean
+  isOrdersRevenueError: boolean
+  onRetryOrdersToday: () => void
+  onRetryOrdersRevenue: () => void
 }
 
-export function SummaryCards({ ordersToday, ordersRevenue }: SummaryCardsProps) {
+export function SummaryCards({
+  ordersToday,
+  ordersRevenue,
+  isOrdersTodayLoading,
+  isOrdersTodayError,
+  isOrdersRevenueLoading,
+  isOrdersRevenueError,
+  onRetryOrdersToday,
+  onRetryOrdersRevenue,
+}: SummaryCardsProps) {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
       <div className="flex items-center justify-between rounded-xl border border-bella-border bg-white p-6 shadow-sm">
         <div>
           <p className="text-sm font-semibold text-bella-subtle">Pedidos Hoje</p>
-          <p className="mt-1 text-3xl font-bold text-bella-ink">{ordersToday}</p>
+          {isOrdersTodayLoading ? <SummaryCardValueSkeleton /> : null}
+
+          {isOrdersTodayError ? (
+            <>
+              <p className="mt-1 font-semibold text-bella-ink">
+                Não foi possível carregar os pedidos de hoje.
+              </p>
+              <button
+                type="button"
+                onClick={onRetryOrdersToday}
+                className="mt-3 rounded-lg bg-bella-brand px-4 py-2 text-sm font-bold text-white"
+              >
+                Tentar novamente
+              </button>
+            </>
+          ) : null}
+
+          {!isOrdersTodayLoading && !isOrdersTodayError ? (
+            <p className="mt-1 text-3xl font-bold text-bella-ink">{ordersToday}</p>
+          ) : null}
         </div>
         <div className="flex size-12 items-center justify-center rounded-full bg-bella-brand/10 text-bella-brand">
           <Utensils className="size-5 shrink-0" />
@@ -22,9 +57,28 @@ export function SummaryCards({ ordersToday, ordersRevenue }: SummaryCardsProps) 
       <div className="flex items-center justify-between rounded-xl border border-bella-border bg-white p-6 shadow-sm">
         <div>
           <p className="text-sm font-semibold text-bella-subtle">Total do Mês</p>
-          <p className="mt-1 text-3xl font-bold text-bella-ink">
-            {formatCurrency(ordersRevenue)}
-          </p>
+          {isOrdersRevenueLoading ? <SummaryCardValueSkeleton /> : null}
+
+          {isOrdersRevenueError ? (
+            <>
+              <p className="mt-1 font-semibold text-bella-ink">
+                Não foi possível carregar o total do mês.
+              </p>
+              <button
+                type="button"
+                onClick={onRetryOrdersRevenue}
+                className="mt-3 rounded-lg bg-bella-brand px-4 py-2 text-sm font-bold text-white"
+              >
+                Tentar novamente
+              </button>
+            </>
+          ) : null}
+
+          {!isOrdersRevenueLoading && !isOrdersRevenueError ? (
+            <p className="mt-1 text-3xl font-bold text-bella-ink">
+              {formatCurrency(ordersRevenue)}
+            </p>
+          ) : null}
         </div>
         <div className="flex size-12 items-center justify-center rounded-full bg-bella-preparing-accent/20 text-bella-preparing">
           <Banknote className="size-5 shrink-0" />

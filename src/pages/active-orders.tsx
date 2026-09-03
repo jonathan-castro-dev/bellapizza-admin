@@ -26,12 +26,22 @@ export function ActiveOrders() {
     queryFn: () => getOrders({ clientName: debouncedClientName, status }),
   })
 
-  const { data: ordersToday } = useQuery({
+  const {
+    data: ordersToday,
+    isPending: isOrdersTodayLoading,
+    isError: isOrdersTodayError,
+    refetch: refetchOrdersToday,
+  } = useQuery({
     queryKey: ['orders-today'],
     queryFn: getOrdersToday,
   })
 
-  const { data: ordersRevenue } = useQuery({
+  const {
+    data: ordersRevenue,
+    isPending: isOrdersRevenueLoading,
+    isError: isOrdersRevenueError,
+    refetch: refetchOrdersRevenue,
+  } = useQuery({
     queryKey: ['orders-revenue'],
     queryFn: getOrdersRevenue,
   })
@@ -47,6 +57,12 @@ export function ActiveOrders() {
           <SummaryCards
             ordersToday={ordersToday ?? 0}
             ordersRevenue={ordersRevenue ?? 0}
+            isOrdersTodayLoading={isOrdersTodayLoading}
+            isOrdersTodayError={isOrdersTodayError}
+            isOrdersRevenueLoading={isOrdersRevenueLoading}
+            isOrdersRevenueError={isOrdersRevenueError}
+            onRetryOrdersToday={() => void refetchOrdersToday()}
+            onRetryOrdersRevenue={() => void refetchOrdersRevenue()}
           />
 
           <div className="mt-8">
