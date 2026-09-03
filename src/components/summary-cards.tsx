@@ -67,7 +67,7 @@ export function SummaryCards({
               <button
                 type="button"
                 onClick={onRetryOrdersRevenue}
-                className="mt-3 rounded-lg bg-bella-brand px-4 py-2 text-sm font-bold text-white"
+                className="mt-3 rounded-lg bg-bella-brand px-4 py-2 text-sm font-bold text-white cursor-pointer"
               >
                 Tentar novamente
               </button>
