@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import { ChevronDown, ChevronLeft, ChevronRight, ListFilter } from 'lucide-react'
+import { ChevronDown, ListFilter } from 'lucide-react'
 import { useSearchParams } from 'react-router'
 
 import type { Order, OrderStatus } from '../api/get-orders.ts'
+import { getOrdersPagination, ORDERS_PER_PAGE } from '../lib/orders-pagination.ts'
 import { OrderTableRow } from './order-table-row.tsx'
 import { OrderTableRowSkeleton } from './order-table-row-skeleton.tsx'
+import { OrdersPagination } from './orders-pagination.tsx'
 
 const STATUS_FILTERS = [
   { label: 'Todos status', value: '' },
@@ -27,6 +29,11 @@ export function OrdersTable({ orders, isLoading, isError, onRetry }: OrdersTable
   const selectedStatus = searchParams.get('status') ?? ''
   const selectedStatusLabel =
     STATUS_FILTERS.find((option) => option.value === selectedStatus)?.label ?? 'Todos status'
+  const { startIndex, perPage } = getOrdersPagination(
+    orders.length,
+    searchParams.get('page'),
+  )
+  const visibleOrders = orders.slice(startIndex, startIndex + perPage)
 
   function handleStatusChange(value: string) {
     setSearchParams((state) => {
@@ -37,6 +44,8 @@ export function OrdersTable({ orders, isLoading, isError, onRetry }: OrdersTable
       } else {
         nextParams.delete('status')
       }
+
+      nextParams.delete('page')
 
       return nextParams
     })
@@ -130,7 +139,7 @@ export function OrdersTable({ orders, isLoading, isError, onRetry }: OrdersTable
           </thead>
           <tbody className="divide-y divide-bella-border">
             {isLoading
-              ? Array.from({ length: 5 }).map((_, index) => (
+              ? Array.from({ length: ORDERS_PER_PAGE }).map((_, index) => (
                   <OrderTableRowSkeleton key={index} />
                 ))
               : null}
@@ -164,34 +173,15 @@ export function OrdersTable({ orders, isLoading, isError, onRetry }: OrdersTable
             ) : null}
 
             {!isError
-              ? orders.map((order) => <OrderTableRow key={order.id} order={order} />)
+              ? visibleOrders.map((order) => (
+                  <OrderTableRow key={order.id} order={order} />
+                ))
               : null}
           </tbody>
         </table>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-4 border-t border-bella-border bg-bella-muted px-4 py-4 text-xs font-medium text-bella-subtle">
-        <p>
-          Exibindo {orders.length}{' '}
-          {orders.length === 1 ? 'pedido ativo' : 'pedidos ativos'}
-        </p>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            className="rounded-lg p-2 text-bella-subtle opacity-30"
-            aria-label="Página anterior"
-          >
-            <ChevronLeft className="size-4" />
-          </button>
-          <button
-            type="button"
-            className="rounded-lg p-2 text-bella-subtle"
-            aria-label="Próxima página"
-          >
-            <ChevronRight className="size-4" />
-          </button>
-        </div>
-      </div>
+      <OrdersPagination totalCount={orders.length} />
     </section>
   )
 }

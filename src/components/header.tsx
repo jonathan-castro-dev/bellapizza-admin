@@ -17,6 +17,8 @@ export function Header() {
           nextParams.delete('clientName')
         }
 
+        nextParams.delete('page')
+
         return nextParams
       },
       { replace: true },
