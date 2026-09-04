@@ -25,9 +25,9 @@ export function SummaryCards({
   onRetryOrdersRevenue,
 }: SummaryCardsProps) {
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-      <div className="flex items-center justify-between rounded-xl border border-bella-border bg-white p-6 shadow-sm">
-        <div>
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
+      <div className="flex items-center justify-between gap-4 rounded-xl border border-bella-border bg-white p-5 shadow-sm lg:p-6">
+        <div className="min-w-0">
           <p className="text-sm font-semibold text-bella-subtle">Pedidos Hoje</p>
           {isOrdersTodayLoading ? <SummaryCardValueSkeleton /> : null}
 
@@ -50,12 +50,12 @@ export function SummaryCards({
             <p className="mt-1 text-3xl font-bold text-bella-ink">{ordersToday}</p>
           ) : null}
         </div>
-        <div className="flex size-12 items-center justify-center rounded-full bg-bella-brand/10 text-bella-brand">
+        <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-bella-brand/10 text-bella-brand">
           <Utensils className="size-5 shrink-0" />
         </div>
       </div>
-      <div className="flex items-center justify-between rounded-xl border border-bella-border bg-white p-6 shadow-sm">
-        <div>
+      <div className="flex items-center justify-between gap-4 rounded-xl border border-bella-border bg-white p-5 shadow-sm lg:p-6">
+        <div className="min-w-0">
           <p className="text-sm font-semibold text-bella-subtle">Total do Mês</p>
           {isOrdersRevenueLoading ? <SummaryCardValueSkeleton /> : null}
 
@@ -80,7 +80,7 @@ export function SummaryCards({
             </p>
           ) : null}
         </div>
-        <div className="flex size-12 items-center justify-center rounded-full bg-bella-preparing-accent/20 text-bella-preparing">
+        <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-bella-preparing-accent/20 text-bella-preparing">
           <Banknote className="size-5 shrink-0" />
         </div>
       </div>

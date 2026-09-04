@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router'
 
@@ -12,9 +13,25 @@ import { useDebounce } from '../hooks/use-debounce.ts'
 
 export function ActiveOrders() {
   const [searchParams] = useSearchParams()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const clientName = searchParams.get('clientName')
   const status = searchParams.get('status')
   const debouncedClientName = useDebounce(clientName, 300)
+
+  const closeSidebar = useCallback(() => {
+    setIsSidebarOpen(false)
+  }, [])
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.matchMedia('(min-width: 1024px)').matches) {
+        setIsSidebarOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const {
     data: orders,
@@ -48,12 +65,15 @@ export function ActiveOrders() {
 
   return (
     <div className="flex min-h-full bg-bella-canvas">
-      <Sidebar />
+      <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <Header />
+        <Header
+          isSidebarOpen={isSidebarOpen}
+          onOpenSidebar={() => setIsSidebarOpen(true)}
+        />
 
-        <main className="mx-auto w-full max-w-7xl flex-1 px-8 py-8">
+        <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 md:px-6 lg:px-8 lg:py-8">
           <SummaryCards
             ordersToday={ordersToday ?? 0}
             ordersRevenue={ordersRevenue ?? 0}
@@ -65,7 +85,7 @@ export function ActiveOrders() {
             onRetryOrdersRevenue={() => void refetchOrdersRevenue()}
           />
 
-          <div className="mt-8">
+          <div className="mt-6 overflow-hidden lg:mt-8">
             <OrdersTable
               orders={orders ?? []}
               isLoading={isPending}
