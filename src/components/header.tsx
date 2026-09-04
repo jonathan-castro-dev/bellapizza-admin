@@ -42,7 +42,7 @@ export function Header({ isSidebarOpen, onOpenSidebar }: HeaderProps) {
       <button
         type="button"
         onClick={onOpenSidebar}
-        className="shrink-0 rounded-full p-2 text-bella-subtle lg:hidden"
+        className="shrink-0 rounded-full p-2 text-bella-subtle lg:hidden cursor-pointer hover:text-bella-brand"
         aria-label="Abrir menu"
         aria-expanded={isSidebarOpen}
         aria-controls="admin-sidebar"
