@@ -41,6 +41,7 @@ export function ActiveOrders() {
   } = useQuery({
     queryKey: ['orders', debouncedClientName, status],
     queryFn: () => getOrders({ clientName: debouncedClientName, status }),
+    staleTime: 1000 * 60 * 5, // 5 minutes
   })
 
   const {
@@ -51,6 +52,7 @@ export function ActiveOrders() {
   } = useQuery({
     queryKey: ['orders-today'],
     queryFn: getOrdersToday,
+    staleTime: 1000 * 60 * 5, // 5 minutes
   })
 
   const {
@@ -61,6 +63,7 @@ export function ActiveOrders() {
   } = useQuery({
     queryKey: ['orders-revenue'],
     queryFn: getOrdersRevenue,
+    staleTime: 1000 * 60 * 5, // 5 minutes
   })
 
   return (
