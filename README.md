@@ -1,75 +1,75 @@
-# React + TypeScript + Vite
+<h1 align="center">BellaPizza Admin</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <a href="#tech">Tecnologias</a> • 
+  <a href="#installation">Instalação</a> • 
+  <a href="#starting">Começando</a>
+</p>
 
-Currently, two official plugins are available:
+<p align="center">
+  <strong>O BellaPizza Admin é um site de gerenciamento de pedidos para uma pizzaria onde o usuário administrador recebe os pedidos dos clientes.</strong>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+<p align="center">
+  <a href="https://bellapizza-admin-beta.vercel.app/" target="_blank">🚀 Visite este projeto</a>
+</p>
 
-## React Compiler
+<h2>🎨 Layout</h2>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+<p align="center">
+    <img src="https://github.com/jonathan-castro-dev/bellapizza-admin/blob/main/src/mockup/image.png" alt="mockup app" width="800px" height="800px">
+</p>
 
-## Expanding the ESLint configuration
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+[![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+<h2 id="tech">💻 Tecnologias</h2>
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Este projeto foi desenvolvido com as seguintes tecnologias:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- [reactjs](https://reactjs.org/)
+- [typescript](https://www.typescriptlang.org/)
+- [vite](https://vite.dev/)
+- [axios](https://axios-http.com/ptbr/)
+- [tailwindcss](https://tailwindcss.com/)
+- [tanstack query](https://tanstack.com/query/latest)
+- [react-router](https://reactrouter.com/)
+- [lucide-react](https://lucide.dev/)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+<h2 id="installation">👷 Instalação</h2>
 
-```
+<h3>Pré-requisitos</h3>
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Para executar o projeto, é necessário ter as seguintes ferramentas instaladas no seu computador:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- [Git](https://git-scm.com/)
+- [Node](https://nodejs.org/en/)
+- [pnpm](https://pnpm.io/pt/installation#usando-npm)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+<h3>Clonando o repositório</h3>
 
-```
+Execute o comando abaixo em um terminal para clonar o projeto.
+
+```git clone https://github.com/jonathan-castro-dev/bellapizza-admin.git```
+
+<h3>Instalando as dependências do projeto</h3>
+
+Ainda no terminal, execute o comando abaixo para instalar as dependências necessárias para o funcionamento do projeto.
+
+```pnpm install```
+
+<h2 id="starting">🏃 Começando</h2>
+
+Em seguida insira o comando abaixo no terminal para iniciar a aplicação:
+
+```pnpm run dev```
+
+<h2>📝 Licença</h2>
+
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/jonathan-castro-dev/bellapizza-admin/blob/main/LICENSE) para mais detalhes.
+
+---
+
+:wave: [Entre em contato!](https://www.linkedin.com/in/jonathan-castro-dev/)
+
