@@ -17,7 +17,7 @@
 <h2>🎨 Layout</h2>
 
 <p align="center">
-    <img src="https://github.com/jonathan-castro-dev/bellapizza-admin/blob/main/src/mockup/image.png" alt="mockup app" width="800px" height="800px">
+    <img src="https://github.com/jonathan-castro-dev/bellapizza-admin/blob/main/src/mockup/active-orders.png" alt="mockup app" width="800px" height="800px">
 </p>
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
